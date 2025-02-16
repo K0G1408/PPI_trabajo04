@@ -1,0 +1,66 @@
+/* Estilos generales */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 20px;
+}
+
+
+/* Contenedor del chat */
+
+#chat {
+    width: 80%;
+    max-width: 500px;
+    height: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    text-align: left;
+}
+
+
+/* Mensajes del chat */
+
+#chat p {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+#chat p strong {
+    color: #007bff;
+}
+
+
+/* Entrada de usuario */
+
+input {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Botón de enviar */
+
+button {
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 500px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}

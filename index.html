@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Chat en Línea</title>
+    <script>
+        function sendMessage() {
+            const name = document.getElementById("name").value;
+            const message = document.getElementById("message").value;
+
+            console.log(name, message)
+
+            if (name && message) {
+                fetch("https://ppitrabajo04-production.up.railway.app/send", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name,
+                            message
+                        })
+                    })
+                    .then(() => {
+                        document.getElementById("message").value = "";
+                        loadMessages();
+                    });
+            }
+        }
+
+        function loadMessages() {
+            fetch("https://ppitrabajo04-production.up.railway.app/messages")
+                .then(response => response.json())
+                .then(data => {
+                    const chatBox = document.getElementById("chat");
+                    chatBox.innerHTML = "";
+                    data.forEach(msg => {
+                        const p = document.createElement("p");
+                        p.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`;
+                        chatBox.appendChild(p);
+                    });
+                });
+        }
+
+        setInterval(loadMessages, 2000); // Cargar mensajes cada 2 segundos
+    </script>
+</head>
+
+<body onload="loadMessages()">
+    <h1>Chat en Línea</h1>
+    <input type="text" id="name" placeholder="Nombre"><br>
+    <input type="text" id="message" placeholder="Mensaje"><br>
+    <button onclick="sendMessage()">Enviar</button>
+
+    <div id="chat" style="border: 1px solid black; height: 300px; overflow-y: scroll; margin-top: 10px;"></div>
+</body>
+
+</html>
